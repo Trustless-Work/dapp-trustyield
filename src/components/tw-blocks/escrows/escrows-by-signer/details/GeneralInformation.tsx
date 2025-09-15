@@ -2,7 +2,11 @@
 
 import React, { useMemo } from "react";
 import { Card } from "@/components/ui/card";
-import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { MultiReleaseMilestone } from "@trustless-work/escrow";
 import {
@@ -17,6 +21,7 @@ import {
   Copy,
   BriefcaseBusiness,
   BookOpen,
+  FlaskRound,
 } from "lucide-react";
 import { Actions, roleActions } from "./Actions";
 import type { DialogStates } from "@/components/tw-blocks/providers/EscrowDialogsProvider";
@@ -106,6 +111,13 @@ export const GeneralInformation = ({
               selectedEscrow.balance ?? 0,
               selectedEscrow.trustline?.name
             )}
+          />
+
+          <StatisticsCard
+            title="Yield Balance"
+            icon={FlaskRound}
+            value={formatCurrency(totalAmount, selectedEscrow.trustline?.name)}
+            isYield={true}
           />
         </div>
         <div className="flex w-full md:w-1/5">

@@ -20,6 +20,7 @@ interface StatisticsCardProps {
   className?: string;
   iconSize?: number;
   fundedBy?: string;
+  isYield?: boolean;
 }
 
 export const StatisticsCard = ({
@@ -33,12 +34,14 @@ export const StatisticsCard = ({
   className,
   iconSize = 30,
   fundedBy,
+  isYield = false,
 }: StatisticsCardProps) => {
   return (
     <Card
       className={cn(
         "overflow-hidden cursor-pointer hover:shadow-lg w-full py-1",
-        className
+        className,
+        isYield && "shadow-xl shadow-emerald-50"
       )}
     >
       <CardContent className="py-4 px-8 min-h-20">
