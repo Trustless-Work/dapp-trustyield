@@ -1,7 +1,8 @@
-import { EscrowsByRoleCards } from "@/components/tw-blocks/escrows/escrows-by-role/cards/EscrowsCards";
+"use client";
+
+import { EscrowsBySignerCards } from "@/components/tw-blocks/escrows/escrows-by-signer/cards/EscrowsCards";
 import { InitializeEscrowDialog } from "@/components/tw-blocks/escrows/single-release/initialize-escrow/dialog/InitializeEscrow";
 import { WalletButton } from "@/components/tw-blocks/wallet-kit/WalletButtons";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
             </div>
           </div>
 
-          <EscrowsByRoleCards />
+          <EscrowsBySignerCards />
         </div>
       </main>
     </div>
