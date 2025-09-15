@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { ReactQueryClientProvider } from "@/components/tw-blocks/providers/ReactQueryClientProvider";
+import { TrustlessWorkProvider } from "@/components/tw-blocks/providers/TrustlessWork";
+// Use these imports to wrap your application (<ReactQueryClientProvider>, <TrustlessWorkProvider>, <WalletProvider> y <EscrowProvider>)
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
