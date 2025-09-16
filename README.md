@@ -1,131 +1,161 @@
-<p align="center"> <img src="https://github.com/user-attachments/assets/5b182044-dceb-41f5-acf0-da22dea7c98a" alt="CLR-S (2)"> </p>
+# TrustYield 💰
 
-# Trustless Work _DEMO_ | [API Documentation](https://docs.trustlesswork.com/trustless-work)
+**Yield-generating escrow infrastructure for the new economy**
 
-A minimal dApp example to demonstrate how to interact with the Trustless Work API, deploy escrows, and submit signed transactions to the Stellar network.
+## 🚀 What is TrustYield?
 
----
+TrustYield revolutionizes escrow services by enabling **yield generation** while funds are held in escrow. Built on Trustless Work's proven escrow infrastructure, it transforms traditional escrows from cost centers into revenue generators.
 
-![image](https://github.com/user-attachments/assets/fddb264f-512e-4402-ae05-7b7717fc29b1)
+### The Problem
 
----
+Traditional escrows lock up capital without generating returns, making them expensive for high-value transactions and prohibitive for high-volume, low-value business models.
 
-# Maintainers | [Telegram](https://t.me/+kmr8tGegxLU0NTA5)
+### Our Solution
 
-<table align="center">
-  <tr>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/6b97e15f-9954-47d0-81b5-49f83bed5e4b" alt="Owner 1" width="150" />
-      <br /><br />
-      <strong>Tech Rebel | Product Manager</strong>
-      <br /><br />
-      <a href="https://github.com/techrebelgit" target="_blank">techrebelgit</a>
-      <br />
-      <a href="https://t.me/Tech_Rebel" target="_blank">Telegram</a>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/e245e8af-6f6f-4a0a-a37f-df132e9b4986" alt="Owner 2" width="150" />
-      <br /><br />
-      <strong>Joel Vargas | Frontend Developer</strong>
-      <br /><br />
-      <a href="https://github.com/JoelVR17" target="_blank">JoelVR17</a>
-      <br />
-      <a href="https://t.me/joelvr20" target="_blank">Telegram</a>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/53d65ea1-007e-40aa-b9b5-e7a10d7bea84" alt="Owner 3" width="150" />
-      <br /><br />
-      <strong>Armando Murillo | Full Stack Developer</strong>
-      <br /><br />
-      <a href="https://github.com/armandocodecr" target="_blank">armandocodecr</a>
-      <br />
-      <a href="https://t.me/armandocode" target="_blank">Telegram</a>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/851273f6-2f91-413d-bd2d-d8dc1f3c2d28" alt="Owner 4" width="150" />
-      <br /><br />
-      <strong>Caleb Loría | Smart Contract Developer</strong>
-      <br /><br />
-      <a href="https://github.com/zkCaleb-dev" target="_blank">zkCaleb-dev</a>
-      <br />
-      <a href="https://t.me/zkCaleb_dev" target="_blank">Telegram</a>
-    </td>
-  </tr>
-</table>
+- **Yield-generating escrows**: Funds earn returns while held securely
+- **Fee model transformation**: From fixed 0.3% fees to yield-sharing revenue
+- **Universal integration**: Any platform can integrate in minutes
+- **Enhanced value**: Free escrow infrastructure + additional income for platforms
 
----
-
-## Getting Started
-
-Follow the steps below to get started with this project:
-
-## Summary
-
-1. Install dependencies.
-2. Format code.
-3. Set enviroment variables.
-4. Run the project!
-
-## Steps
-
-1. Fork the repo.
-2. Clone the repo locally.
-3. Execute `npm i`.
-4. Setup .env according to the information below.
-   1. et the API Key from the htpps://dapp.dev.trustlesswork.com -> https://docs.trustlesswork.com/trustless-work/developer-resources/authentication/request-api-key
-5. Run the project.
-
-## Installation
-
-1. Install dependencies:
-
-   ```bash
-   npm i
-   ```
-
-2. Format the code using Prettier: (This is for avoid eslint errors)
-
-   ```bash
-   npx prettier --write .
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-## Environment Variables
-
-Make sure to set up the following environment variable in your `.env` file:
+## 🏗️ Architecture
 
 ```
-
-# TRUSTLESS WORK -> See API KEY Video
-NEXT_PUBLIC_API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXQiOiJHRE42SUpMUzVCUjNXN1FCM1NBRTNNWU5CRzZINFpXRFVHWURNRVVRWEU2RjJRSFhXSFlNNU1MWCIsImlhdCI6MTc0NTcwMzQzM30.M1gr85EXzUl7JRZ82yOORtVTGmGRL_DxN2C2Cl486lY
-
-
+┌─────────────┐    ┌──────────────┐    ┌─────────────┐
+│   Frontend  │───►│ Trustless    │───►│  DeFindex   │
+│  (Next.js)  │    │ Work Escrow  │    │  Protocol   │
+└─────────────┘    └──────────────┘    └─────────────┘
+       │                    │                   │
+       │                    ▼                   ▼
+       │            ┌──────────────┐    ┌─────────────┐
+       └───────────►│   Stellar    │◄───│    Yield    │
+                    │  Blockchain  │    │ Strategies  │
+                    └──────────────┘    └─────────────┘
 ```
 
-## Wallet Requirements
+## 🛠️ Tech Stack
 
-To use this project, you must have one of the following wallets installed:
+- **Frontend**: Next.js 15 + TypeScript + Tailwind CSS
+- **Blockchain**: Stellar Network
+- **Escrow**: Trustless Work Infrastructure
+- **Yield**: DeFindex Protocol
+- **UI Components**: shadcn/ui
 
-- **Freighter**
+## 🚀 Getting Started
 
-These wallets are required to interact with the platform.
+### Prerequisites
 
-### How to use a Wallet
+- Node.js 18+
+- npm or yarn
+- Git
 
-You should use Chrome, Brave or Firefox browser, please install any of the wallets that were listen before.
-Important Note: If you're having problems to use Freighter, make sure that you have the wallet in "test net", and also if even you couldn't be able to use because it shows you "Not Available". Try going to: Security > Manage Connected Wallet > Remove the "localhost". If the problem persist, please contact us. This mistake happens for the wallet, not our product.
+### Installation
 
-## IMPORTANT NOTE:
+```bash
+# Clone the repository
+git clone https://github.com/Trustless-Work/dapp-trustyield.git
+cd dapp-trustyield
 
-_It's important to note that we are using Husky. This means that when you run a `git push`, Husky will automatically execute `npm run format and npm run lint`. If either of these commands throws an error, the push will not be successful, and you will see a Husky error. When this happens, make sure to resolve any format and lint errors before trying the push again._
+# Install dependencies
+npm install
 
----
+# Run development server
+npm run dev
+```
 
-## **Thanks to all the contributors who have made this project possible!**
+Open [http://localhost:3001](http://localhost:3001) to view the application.
 
-[![Contributors](https://contrib.rocks/image?repo=Trustless-Work/dApp-Trustless-Work)](https://github.com/Trustless-Work/dApp-Trustless-Work/graphs/contributors)
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_STELLAR_NETWORK=testnet
+NEXT_PUBLIC_TRUSTLESS_API_URL=https://api.trustlesswork.com
+NEXT_PUBLIC_DEFINDEX_API_URL=https://api.defindex.io
+```
+
+## 📱 Use Cases
+
+### High-Value Transactions
+
+- **Real Estate**: $100K+ transactions earning 3-8% APY
+- **M&A Deals**: Million-dollar escrows generating significant returns
+- **RWA Trading**: Tokenized assets with yield-backed security
+
+### High-Volume Marketplaces
+
+- **E-commerce**: Small transactions with micro-yields
+- **Service Platforms**: Gig economy with yield-enhanced escrows
+- **Digital Marketplaces**: NFTs, domains, digital assets
+
+## 🏢 Team
+
+### [Alberto Chaves](https://x.com/TechRebelWorld) - CEO & Founder
+
+7+ years leading R&D in fintech and Web3. Expert in cross-border payments, tokenized platforms, and blockchain architecture across Stellar, Ethereum, Solana, and more.
+
+### [Armando](https://x.com/Armando_Code) - Co-founder & Developer
+
+Full-stack developer from Costa Rica with expertise in blockchain technology and secure payment systems.
+
+### [Jenny T](https://x.com/jennyt_eth) - ✦ Psychologist Tech ✦ Growth Marketing Digital ✦ Web3
+
+Dedicated to building a community in Web3 and the crypto ecosystem, focusing on the education and empowerment of women
+
+### [Joel Vargas](https://x.com/joel20vargas) - Full Stack Developer
+
+Systems Engineer specializing in Web3 integrations, responsive UIs, and developer experience optimization.
+
+### [Matías Aguilar](https://x.com/aguilar1x1) - Blockchain Developer
+
+2.5 years experience in backend/frontend with focus on Smart Contracts in Cairo and Rust.
+
+## 🛣️ Roadmap
+
+- [x] **Phase 1**: Core escrow infrastructure (Trustless Work)
+- [x] **Phase 2**: DeFindex integration research
+- [ ] **Phase 3**: TrustYield MVP development
+- [ ] **Phase 4**: Testnet deployment
+- [ ] **Phase 5**: Mainnet launch
+- [ ] **Phase 6**: Platform integrations
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- **Website**: [Trustless Work](https://trustlesswork.com)
+- **Documentation**: [Coming Soon]
+- **Twitter**: [@TrustlessWork](https://twitter.com/trustlesswork)
+- **Discord**: [Join our community](https://discord.gg/trustlesswork)
+
+## 📊 Key Features
+
+### For Platforms
+
+- **Revenue sharing**: Earn from yield generation
+- **Zero fees**: Free escrow infrastructure
+- **Quick integration**: Deploy in minutes
+- **White-label**: Customize to your brand
+
+### For Users
+
+- **Lower costs**: Yield offsets escrow fees
+- **Secure storage**: Battle-tested infrastructure
+- **Transparent yields**: Real-time return tracking
+- **Multi-asset support**: Various stablecoins
+
+**Built with ❤️ by the Trustless Work team**
+
+_Transforming escrows from cost centers to profit centers, one transaction at a time._
