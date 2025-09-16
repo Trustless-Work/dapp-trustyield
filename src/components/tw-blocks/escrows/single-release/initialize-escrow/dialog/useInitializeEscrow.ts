@@ -47,6 +47,7 @@ export function useInitializeEscrow() {
         receiver: "",
         releaseSigner: "",
         disputeResolver: "",
+        vaultOperator: "",
       },
       milestones: [{ description: "" }],
     },
@@ -91,6 +92,7 @@ export function useInitializeEscrow() {
         receiver: walletAddress || "",
         releaseSigner: walletAddress || "",
         disputeResolver: walletAddress || "",
+        vaultOperator: walletAddress || "",
       },
       milestones: [
         { description: "Design the wireframe" },

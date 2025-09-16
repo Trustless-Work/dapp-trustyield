@@ -14,6 +14,12 @@ export const trustlines = [
     network: "testnet",
   },
   {
+    name: "USDC SoroSwap",
+    address: "GATALTGTWIOT6BUDBCZM3Q4OQ4BO2COLOAZ7IYSKPLC2PMSOPPGF5V56",
+    decimals: 10000000,
+    network: "testnet",
+  },
+  {
     name: "EURC",
     address: "GB3Q6QDZYTHWT7E5PVS3W7FUT5GVAFC5KSZFFLPU25GO7VTC3NM2ZTVO",
     decimals: 10000000,

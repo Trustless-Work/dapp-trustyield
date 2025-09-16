@@ -205,7 +205,7 @@ export const useEscrowsMutations = () => {
       type,
       address,
     }: {
-      payload: FundEscrowPayload;
+      payload: { contractId: string; signer: string };
       type: EscrowType;
       address: string;
     }) => {
@@ -257,7 +257,7 @@ export const useEscrowsMutations = () => {
       type,
       address,
     }: {
-      payload: FundEscrowPayload;
+      payload: { contractId: string; signer: string };
       type: EscrowType;
       address: string;
     }) => {

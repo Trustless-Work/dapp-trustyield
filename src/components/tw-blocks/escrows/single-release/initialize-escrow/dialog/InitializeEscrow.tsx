@@ -312,7 +312,7 @@ export const InitializeEscrowDialog = () => {
               />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <FormField
                 control={form.control}
                 name="roles.platformAddress"
@@ -352,6 +352,31 @@ export const InitializeEscrowDialog = () => {
                     <FormControl>
                       <Input
                         placeholder="Enter receiver address"
+                        {...field}
+                        onChange={(e) => {
+                          field.onChange(e);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="roles.vaultOperator"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center justify-between">
+                      <span className="flex items-center">
+                        Vault Operator
+                        <span className="text-destructive ml-1">*</span>
+                      </span>
+                    </FormLabel>
+
+                    <FormControl>
+                      <Input
+                        placeholder="Enter vault operator address"
                         {...field}
                         onChange={(e) => {
                           field.onChange(e);

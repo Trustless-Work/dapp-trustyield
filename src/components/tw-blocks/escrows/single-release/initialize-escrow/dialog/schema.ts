@@ -59,6 +59,14 @@ export const useInitializeEscrowSchema = () => {
           .refine((value) => isValidWallet(value), {
             message: "Receiver address must be a valid wallet.",
           }),
+        vaultOperator: z
+          .string()
+          .min(1, {
+            message: "Vault Operator address is required.",
+          })
+          .refine((value) => isValidWallet(value), {
+            message: "Vault Operator address must be a valid wallet.",
+          }),
       }),
       engagementId: z.string().min(1, {
         message: "Engagement is required.",
