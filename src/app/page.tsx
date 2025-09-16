@@ -1,5 +1,6 @@
 "use client";
 
+import React, { Suspense } from "react";
 import { EscrowsBySignerCards } from "@/components/tw-blocks/escrows/escrows-by-signer/cards/EscrowsCards";
 import { InitializeEscrowDialog } from "@/components/tw-blocks/escrows/single-release/initialize-escrow/dialog/InitializeEscrow";
 import { WalletButton } from "@/components/tw-blocks/wallet-kit/WalletButtons";
@@ -23,7 +24,9 @@ export default function Home() {
             </div>
           </div>
 
-          <EscrowsBySignerCards />
+          <Suspense fallback={null}>
+            <EscrowsBySignerCards />
+          </Suspense>
         </div>
       </main>
     </div>
