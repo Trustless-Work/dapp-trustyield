@@ -23,7 +23,10 @@ export function TrustlessWorkProvider({
   const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
 
   return (
-    <TrustlessWorkConfig baseURL={development} apiKey={apiKey}>
+    <TrustlessWorkConfig
+      baseURL={"https://trustless-backend-production.up.railway.app" as any}
+      apiKey={apiKey}
+    >
       {children}
     </TrustlessWorkConfig>
   );

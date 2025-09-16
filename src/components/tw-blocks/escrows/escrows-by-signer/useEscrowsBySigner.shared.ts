@@ -109,7 +109,7 @@ export function useEscrowsBySigner() {
       title: debouncedTitle,
       engagementId: debouncedEngagementId,
       isActive,
-      validateOnChain,
+      validateOnChain: false,
       type,
       status,
       minAmount: debouncedMinAmount,
@@ -192,7 +192,7 @@ export function useEscrowsBySigner() {
       title: debouncedTitle || undefined,
       engagementId: debouncedEngagementId || undefined,
       isActive,
-      validateOnChain,
+      validateOnChain: false,
       type: (type === "all" ? undefined : type) as
         | undefined
         | "single-release"
