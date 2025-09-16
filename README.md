@@ -6,10 +6,12 @@
 
 TrustYield revolutionizes escrow services by enabling **yield generation** while funds are held in escrow. Built on Trustless Work's proven escrow infrastructure, it transforms traditional escrows from cost centers into revenue generators.
 
-### The Problem 
+### The Problem
+
 Traditional escrows lock up capital without generating returns, making them expensive for high-value transactions and prohibitive for high-volume, low-value business models.
 
 ### Our Solution
+
 - **Yield-generating escrows**: Funds earn returns while held securely
 - **Fee model transformation**: From fixed 0.3% fees to yield-sharing revenue
 - **Universal integration**: Any platform can integrate in minutes
@@ -42,7 +44,7 @@ Traditional escrows lock up capital without generating returns, making them expe
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 - Git
 
@@ -75,11 +77,13 @@ NEXT_PUBLIC_DEFINDEX_API_URL=https://api.defindex.io
 ## 📱 Use Cases
 
 ### High-Value Transactions
+
 - **Real Estate**: $100K+ transactions earning 3-8% APY
 - **M&A Deals**: Million-dollar escrows generating significant returns
 - **RWA Trading**: Tokenized assets with yield-backed security
 
 ### High-Volume Marketplaces
+
 - **E-commerce**: Small transactions with micro-yields
 - **Service Platforms**: Gig economy with yield-enhanced escrows
 - **Digital Marketplaces**: NFTs, domains, digital assets
@@ -87,18 +91,23 @@ NEXT_PUBLIC_DEFINDEX_API_URL=https://api.defindex.io
 ## 🏢 Team
 
 ### [Alberto Chaves](https://x.com/TechRebelWorld) - CEO & Founder
+
 7+ years leading R&D in fintech and Web3. Expert in cross-border payments, tokenized platforms, and blockchain architecture across Stellar, Ethereum, Solana, and more.
 
-### [Armando](https://x.com/Armando_Code) - Co-founder & Developer  
+### [Armando](https://x.com/Armando_Code) - Co-founder & Developer
+
 Full-stack developer from Costa Rica with expertise in blockchain technology and secure payment systems.
 
-### [Jenny T](https://x.com/jennyt_eth) - ✦ Psychologist Tech ✦ Growth Marketing Digital ✦ Web3  
+### [Jenny T](https://x.com/jennyt_eth) - ✦ Psychologist Tech ✦ Growth Marketing Digital ✦ Web3
+
 Dedicated to building a community in Web3 and the crypto ecosystem, focusing on the education and empowerment of women
 
 ### [Joel Vargas](https://x.com/joel20vargas) - Full Stack Developer
+
 Systems Engineer specializing in Web3 integrations, responsive UIs, and developer experience optimization.
 
 ### [Matías Aguilar](https://x.com/aguilar1x1) - Blockchain Developer
+
 2.5 years experience in backend/frontend with focus on Smart Contracts in Cairo and Rust.
 
 ## 🛣️ Roadmap
@@ -134,19 +143,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📊 Key Features
 
 ### For Platforms
+
 - **Revenue sharing**: Earn from yield generation
 - **Zero fees**: Free escrow infrastructure
 - **Quick integration**: Deploy in minutes
 - **White-label**: Customize to your brand
 
 ### For Users
+
 - **Lower costs**: Yield offsets escrow fees
 - **Secure storage**: Battle-tested infrastructure
 - **Transparent yields**: Real-time return tracking
 - **Multi-asset support**: Various stablecoins
 
-
-
 **Built with ❤️ by the Trustless Work team**
 
-*Transforming escrows from cost centers to profit centers, one transaction at a time.*
+_Transforming escrows from cost centers to profit centers, one transaction at a time._

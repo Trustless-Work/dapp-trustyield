@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
 import { ReactQueryClientProvider } from "@/components/tw-blocks/providers/ReactQueryClientProvider";
 import { TrustlessWorkProvider } from "@/components/tw-blocks/providers/TrustlessWork";
-// Use these imports to wrap your application (<ReactQueryClientProvider>, <TrustlessWorkProvider>, <WalletProvider> y <EscrowProvider>)
+import { WalletProvider } from "@/components/tw-blocks/wallet-kit/WalletProvider";
+import { EscrowProvider } from "@/components/tw-blocks/providers/EscrowProvider";
+import { EscrowDialogsProvider } from "@/components/tw-blocks/providers/EscrowDialogsProvider";
+import { EscrowAmountProvider } from "@/components/tw-blocks/providers/EscrowAmountProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +31,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ReactQueryClientProvider>
+            <TrustlessWorkProvider>
+              <WalletProvider>
+                <EscrowProvider>
+                  <EscrowDialogsProvider>
+                    <EscrowAmountProvider>
+                      {children}
+                      <Toaster richColors position="top-right" />
+                    </EscrowAmountProvider>
+                  </EscrowDialogsProvider>
+                </EscrowProvider>
+              </WalletProvider>
+            </TrustlessWorkProvider>
+          </ReactQueryClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

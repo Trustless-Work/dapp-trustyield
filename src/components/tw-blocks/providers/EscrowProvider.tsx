@@ -15,12 +15,17 @@ import {
   Trustline,
 } from "@trustless-work/escrow/types";
 
+// Add optional yieldBalance to the Escrow type used locally
+export type EscrowWithYield = Escrow & { yieldBalance?: number; apy?: string };
+
 type SingleEscrowPayload = Omit<
   Escrow,
   "type" | "updatedAt" | "createdAt" | "user" | "trustline"
 > &
   Partial<Pick<Escrow, "type" | "updatedAt" | "createdAt" | "user">> & {
     trustline: Trustline & { name?: string };
+    // New optional field
+    yieldBalance?: number;
   };
 
 type MultiEscrowPayload = Omit<
@@ -28,19 +33,26 @@ type MultiEscrowPayload = Omit<
   "type" | "updatedAt" | "createdAt" | "user" | "trustline" | "amount"
 > &
   Partial<
-    Pick<Escrow, "type" | "updatedAt" | "createdAt" | "user" | "amount">
+    Pick<Escrow, "type" | "updatedAt" | "createdAt" | "user" | "amount"> & {
+      yieldBalance?: number;
+    }
   > & {
     trustline: Trustline & { name?: string };
   };
 
 type EscrowContextType = {
-  selectedEscrow: Escrow | null;
+  selectedEscrow: EscrowWithYield | null;
   hasEscrow: boolean;
   userRolesInEscrow: string[];
   updateEscrow: (
-    updater: Partial<Escrow> | ((previous: Escrow) => Escrow)
+    updater:
+      | Partial<EscrowWithYield>
+      | ((previous: EscrowWithYield) => EscrowWithYield)
   ) => void;
-  setEscrowField: <K extends keyof Escrow>(key: K, value: Escrow[K]) => void;
+  setEscrowField: <K extends keyof EscrowWithYield>(
+    key: K,
+    value: EscrowWithYield[K]
+  ) => void;
   clearEscrow: () => void;
   setSelectedEscrow: (
     escrow?: SingleEscrowPayload | MultiEscrowPayload
@@ -53,9 +65,8 @@ const EscrowContext = createContext<EscrowContextType | undefined>(undefined);
 const LOCAL_STORAGE_KEY = "selectedEscrow";
 
 export const EscrowProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedEscrow, setSelectedEscrowState] = useState<Escrow | null>(
-    null
-  );
+  const [selectedEscrow, setSelectedEscrowState] =
+    useState<EscrowWithYield | null>(null);
   const [userRolesInEscrow, setUserRolesInEscrowState] = useState<string[]>([]);
 
   /**
@@ -65,7 +76,7 @@ export const EscrowProvider = ({ children }: { children: ReactNode }) => {
     try {
       const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (stored) {
-        const parsed: Escrow = JSON.parse(stored);
+        const parsed: EscrowWithYield = JSON.parse(stored);
         setSelectedEscrowState(parsed);
       }
     } catch (_err) {
@@ -78,7 +89,7 @@ export const EscrowProvider = ({ children }: { children: ReactNode }) => {
    *
    * @param value - The escrow to persist
    */
-  const persist = (value: Escrow | null) => {
+  const persist = (value: EscrowWithYield | null) => {
     if (value) {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(value));
     } else {
@@ -96,8 +107,8 @@ export const EscrowProvider = ({ children }: { children: ReactNode }) => {
       if (!current) return current;
       const next =
         typeof updater === "function"
-          ? updater(current)
-          : { ...current, ...updater };
+          ? (updater as (prev: EscrowWithYield) => EscrowWithYield)(current)
+          : { ...current, ...(updater as Partial<EscrowWithYield>) };
       persist(next);
       return next;
     });
@@ -112,7 +123,7 @@ export const EscrowProvider = ({ children }: { children: ReactNode }) => {
   const setEscrowField: EscrowContextType["setEscrowField"] = (key, value) => {
     setSelectedEscrowState((current) => {
       if (!current) return current;
-      const next = { ...current, [key]: value } as Escrow;
+      const next = { ...current, [key]: value } as EscrowWithYield;
       persist(next);
       return next;
     });
@@ -158,7 +169,7 @@ export const EscrowProvider = ({ children }: { children: ReactNode }) => {
         setEscrowField,
         clearEscrow,
         setSelectedEscrow: (value?: SingleEscrowPayload | MultiEscrowPayload) =>
-          setSelectedEscrowState((value as unknown as Escrow) ?? null),
+          setSelectedEscrowState((value as unknown as EscrowWithYield) ?? null),
         setUserRolesInEscrow,
         userRolesInEscrow,
       }}
