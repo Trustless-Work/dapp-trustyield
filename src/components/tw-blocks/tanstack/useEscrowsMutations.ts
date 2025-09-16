@@ -25,6 +25,7 @@ import {
   SingleReleaseResolveDisputePayload,
 } from "@trustless-work/escrow";
 import { signTransaction } from "../wallet-kit/wallet-kit";
+import { http } from "@/lib/axios";
 
 /**
  * Use the mutations to interact with the escrows
@@ -165,6 +166,109 @@ export const useEscrowsMutations = () => {
       if (!unsignedTransaction) {
         throw new Error(
           "Unsigned transaction is missing from fundEscrow response."
+        );
+      }
+
+      // Step 2: Sign transaction
+      const signedTxXdr = await signTransaction({
+        unsignedTransaction,
+        address,
+      });
+
+      if (!signedTxXdr) {
+        throw new Error("Signed transaction is missing.");
+      }
+
+      // Step 3: Send transaction
+      const response = await sendTransaction(signedTxXdr);
+
+      if (response.status !== "SUCCESS") {
+        throw new Error("Transaction failed to send");
+      }
+
+      return response;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["escrows"] });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  /**
+   * Deposit Yield Escrow
+   */
+  const depositYieldEscrowMutation = useMutation({
+    mutationFn: async ({
+      payload,
+      type,
+      address,
+    }: {
+      payload: FundEscrowPayload;
+      type: EscrowType;
+      address: string;
+    }) => {
+      // Step 1: Get unsigned transaction
+      const { data: unsignedTransaction } = await http.post(
+        `/escrows/${type}/deposit-yield`,
+        payload
+      );
+
+      if (!unsignedTransaction) {
+        throw new Error(
+          "Unsigned transaction is missing from depositYieldEscrowMutation response."
+        );
+      }
+
+      // Step 2: Sign transaction
+      const signedTxXdr = await signTransaction({
+        unsignedTransaction,
+        address,
+      });
+
+      if (!signedTxXdr) {
+        throw new Error("Signed transaction is missing.");
+      }
+
+      // Step 3: Send transaction
+      const response = await sendTransaction(signedTxXdr);
+
+      if (response.status !== "SUCCESS") {
+        throw new Error("Transaction failed to send");
+      }
+
+      return response;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["escrows"] });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  /**
+   * Withdraw Yield Escrow
+   */
+  const withDrawYieldEscrowMutation = useMutation({
+    mutationFn: async ({
+      payload,
+      type,
+      address,
+    }: {
+      payload: FundEscrowPayload;
+      type: EscrowType;
+      address: string;
+    }) => {
+      // Step 1: Get unsigned transaction
+      const {
+        data: { unsignedTransaction },
+      } = await http.post(`/escrows/${type}/withdraw-yield`, payload);
+
+      if (!unsignedTransaction) {
+        throw new Error(
+          "Unsigned transaction is missing from withDrawYieldEscrowMutation response."
         );
       }
 
@@ -438,6 +542,8 @@ export const useEscrowsMutations = () => {
     deployEscrow: deployEscrowMutation,
     updateEscrow: updateEscrowMutation,
     fundEscrow: fundEscrowMutation,
+    depositYieldEscrow: depositYieldEscrowMutation,
+    withdrawYieldEscrow: withDrawYieldEscrowMutation,
     changeMilestoneStatus: changeMilestoneStatusMutation,
     approveMilestone: approveMilestoneMutation,
     startDispute: startDisputeMutation,

@@ -11,6 +11,7 @@ export type DialogState = {
 export type DialogStates = {
   second: DialogState;
   successRelease: DialogState;
+  fundYield: DialogState;
 };
 
 type EscrowDialogsContextType = DialogStates;
@@ -26,6 +27,7 @@ export function EscrowDialogsProvider({
 }) {
   const [secondOpen, setSecondOpen] = useState(false);
   const [successReleaseOpen, setSuccessReleaseOpen] = useState(false);
+  const [fundYieldOpen, setFundYieldOpen] = useState(false);
 
   const value = useMemo<EscrowDialogsContextType>(
     () => ({
@@ -37,8 +39,14 @@ export function EscrowDialogsProvider({
         isOpen: successReleaseOpen,
         setIsOpen: setSuccessReleaseOpen,
       },
+
+      // Fund Yield Dialog
+      fundYield: {
+        isOpen: fundYieldOpen,
+        setIsOpen: setFundYieldOpen,
+      },
     }),
-    [secondOpen, successReleaseOpen]
+    [secondOpen, successReleaseOpen, fundYieldOpen]
   );
 
   return (

@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { Actions, roleActions } from "./Actions";
 import type { DialogStates } from "@/components/tw-blocks/providers/EscrowDialogsProvider";
-import { GetEscrowsFromIndexerResponse } from "@trustless-work/escrow/types";
+
 import { useEscrowAmountContext } from "@/components/tw-blocks/providers/EscrowAmountProvider";
 import { StatisticsCard } from "./StatisticsCard";
 import {
@@ -34,9 +34,10 @@ import {
   formatRole,
 } from "@/components/tw-blocks/helpers/format.helper";
 import { useCopy } from "@/components/tw-blocks/helpers/useCopy";
+import { EscrowWithYield } from "@/components/tw-blocks/providers/EscrowProvider";
 
 interface GeneralInformationProps {
-  selectedEscrow: GetEscrowsFromIndexerResponse;
+  selectedEscrow: EscrowWithYield;
   userRolesInEscrow: string[];
   dialogStates: DialogStates;
   areAllMilestonesApproved: boolean;
@@ -115,8 +116,12 @@ export const GeneralInformation = ({
 
           <StatisticsCard
             title="Yield Balance"
+            description={`APY: ${selectedEscrow.apy ?? "5.3"}%`}
             icon={FlaskRound}
-            value={formatCurrency(totalAmount, selectedEscrow.trustline?.name)}
+            value={formatCurrency(
+              selectedEscrow?.yieldBalance ?? 0,
+              selectedEscrow.trustline?.name
+            )}
             isYield={true}
           />
         </div>

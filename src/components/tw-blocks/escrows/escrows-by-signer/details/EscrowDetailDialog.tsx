@@ -53,6 +53,7 @@ export const EscrowDetailDialog = ({
     setIsDialogOpen,
     setSelectedEscrow,
     selectedEscrow,
+    isDialogOpen,
   });
 
   const stellarExplorerUrl = `https://stellar.expert/explorer/testnet/contract/${selectedEscrow?.contractId}`;

@@ -3,20 +3,24 @@ import { GetEscrowsFromIndexerResponse as Escrow } from "@trustless-work/escrow/
 import { useWalletContext } from "@/components/tw-blocks/wallet-kit/WalletProvider";
 import { useEscrowContext } from "@/components/tw-blocks/providers/EscrowProvider";
 import { useEscrowAmountContext } from "@/components/tw-blocks/providers/EscrowAmountProvider";
+import { http } from "@/lib/axios";
 
 interface EscrowDetailDialogProps {
   setIsDialogOpen: (value: boolean) => void;
   setSelectedEscrow: (selectedEscrow?: Escrow) => void;
   selectedEscrow: Escrow | null;
+  isDialogOpen: boolean;
 }
 
 const useEscrowDetailDialog = ({
   setIsDialogOpen,
   setSelectedEscrow,
   selectedEscrow,
+  isDialogOpen,
 }: EscrowDetailDialogProps) => {
   const { walletAddress } = useWalletContext();
-  const { userRolesInEscrow, setUserRolesInEscrow } = useEscrowContext();
+  const { userRolesInEscrow, setUserRolesInEscrow, setEscrowField } =
+    useEscrowContext();
 
   const { setAmounts } = useEscrowAmountContext();
 
@@ -113,6 +117,45 @@ const useEscrowDetailDialog = ({
   useEffect(() => {
     setAmounts(totalAmount, platformFeePercentage);
   }, [totalAmount, platformFeePercentage, setAmounts]);
+
+  // Fetch yield balance when dialog opens
+  useEffect(() => {
+    let cancelled = false;
+
+    const fetchYieldBalance = async () => {
+      try {
+        if (!isDialogOpen || !selectedEscrow) return;
+        const type = selectedEscrow.type;
+        const contractId = selectedEscrow.contractId;
+        if (!type || !contractId) return;
+
+        const { data } = await http.get(`/escrows/${type}/get-yield-balance`, {
+          params: { contractId },
+        });
+
+        const value = Number(
+          typeof data === "number"
+            ? data
+            : (data?.balance ?? data?.yieldBalance ?? NaN)
+        );
+
+        if (!cancelled && !Number.isNaN(value)) {
+          setEscrowField("yieldBalance", value);
+        }
+      } catch (error) {
+        console.error(
+          "[EscrowDetailDialog] Error fetching yield balance:",
+          error
+        );
+      }
+    };
+
+    fetchYieldBalance();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isDialogOpen, selectedEscrow, setEscrowField]);
 
   return {
     handleClose,

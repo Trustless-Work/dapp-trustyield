@@ -140,3 +140,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes floating-shadow {
+  0%, 100% {
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.1), 0 2px 4px -1px rgba(16, 185, 129, 0.06);
+  }
+  50% {
+    box-shadow: 0 8px 12px -2px rgba(16, 185, 129, 0.15), 0 4px 8px -2px rgba(16, 185, 129, 0.1);
+  }
+}
+
+.animate-floating-shadow {
+  animation: floating-shadow 3s ease-in-out infinite;
+}

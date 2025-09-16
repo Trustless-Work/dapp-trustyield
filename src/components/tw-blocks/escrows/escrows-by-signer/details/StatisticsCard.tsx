@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatText } from "@/components/tw-blocks/helpers/format.helper";
+import { FundYieldDialog } from "../../fund-yield/FundYieldDialog";
 
 interface StatisticsCardProps {
   title: string;
+  description?: string;
   icon: LucideIcon;
   iconColor?: string;
   value: ReactNode;
@@ -25,6 +27,7 @@ interface StatisticsCardProps {
 
 export const StatisticsCard = ({
   title,
+  description,
   icon: Icon,
   iconColor,
   value,
@@ -39,9 +42,9 @@ export const StatisticsCard = ({
   return (
     <Card
       className={cn(
-        "overflow-hidden cursor-pointer hover:shadow-lg w-full py-1",
+        "overflow-hidden cursor-pointer w-full py-1",
         className,
-        isYield && "shadow-xl shadow-emerald-50"
+        isYield && "animate-floating-shadow"
       )}
     >
       <CardContent className="py-4 px-8 min-h-20">
@@ -75,6 +78,14 @@ export const StatisticsCard = ({
               {actionLabel}
             </Button>
           )}
+        </div>
+
+        <div className="flex justify-between items-center pt-2">
+          {description && (
+            <p className="mt-2 text-xs text-muted-foreground">{description}</p>
+          )}
+
+          {isYield && <FundYieldDialog />}
         </div>
       </CardContent>
     </Card>
