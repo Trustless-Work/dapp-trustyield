@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client"; // make sure this is a client component
 
 import React from "react";
 import {
   // development environment = "https://dev.api.trustlesswork.com"
-  development,
+  // development,
 
   // mainnet environment = "https://api.trustlesswork.com"
   // mainNet,
